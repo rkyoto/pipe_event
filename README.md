@@ -7,7 +7,7 @@ but is based on two pipes created using os.pipe() functions.
 Before Python 3.3, monotonic time is not introduced so adjusting system
 clock may affect Event.wait() function if specific timeout is set.
 
-Following notes can be found in PEP 0418:
+Following notes can be found in [PEP 0418](https://www.python.org/dev/peps/pep-0418/#rationale):
 
     If a program uses the system time to schedule events or to implement
     a timeout, it may fail to run events at the right moment or stop the
