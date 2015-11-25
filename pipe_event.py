@@ -17,7 +17,7 @@ Following notes can be found in PEP 0418:
     or adjusted automatically by NTP."
 
 This module demonstrates an alternative Event implementation on Unix-like
-system which is not affected by the above issue.
+systems which is not affected by the above issue.
 
 '''
 
@@ -52,8 +52,12 @@ class Event:
 
     def set(self):
         self.lock.acquire()
-        if not self.is_set():
-            self.w_pipe.write(b'\n')
+        try:
+            if not self.is_set():
+                self.w_pipe.write(b'\n')
+        except:
+            self.lock.release()
+            raise
         self.lock.release()
 
     def clear(self):

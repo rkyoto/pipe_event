@@ -15,7 +15,21 @@ Following notes can be found in [PEP 0418](https://www.python.org/dev/peps/pep-0
     or adjusted automatically by NTP.
 
 This module demonstrates an alternative Event implementation on Unix-like
-system which is not affected by the above issue.
+systems which is not affected by the above issue.
+
+Example
+-------
+
+The issue can be observed with threading.Event:
+
+```python
+ev = threading.Event()
+# ...
+ev.wait(100)  # set timeout to 100s
+# if system clock is turned back by 1 hour before Event.wait() function
+# returns, the function will just continue to wait an hour.
+# ...
+```
 
 License
 -------
