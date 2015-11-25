@@ -21,8 +21,8 @@ Example
 -------
 
 The issue can be observed with threading.Event:
-
 ```python
+import threading
 ev = threading.Event()
 # ...
 ev.wait(100)  # set timeout to 100s
@@ -30,6 +30,8 @@ ev.wait(100)  # set timeout to 100s
 # returns, the function will just continue to wait an hour.
 # ...
 ```
+
+This issue does not affect pipe_event since it uses select function.
 
 License
 -------
